@@ -22,9 +22,6 @@
      * Startup
      */
     app.run(function($rootScope, $route, $filter) {
-        
-
-       
         $rootScope.types = types;
         $rootScope.type = types[0].id;
 
@@ -46,7 +43,7 @@
         console.log($scope)
     });
 
-   
+  
 
 })(window.angular);
 

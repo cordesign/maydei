@@ -1,3 +1,4 @@
+
 (function(angular) {
     'use strict';
 
@@ -14,6 +15,9 @@
         }
 
         function SlidingPuzzle(rows, cols) {
+    
+        
+            
             /**
              * Puzzle grid
              * @type {Array}
@@ -77,7 +81,7 @@
                     this.grid[row][col] = tiles.shift();
                 });
             };
-
+            
             /**
              * Is solved?
              * @type {Boolean}
@@ -93,7 +97,7 @@
                     }
                 }
                 
-                    return "GANHASTE!!!";
+                    return false;
                 
             };
             /**

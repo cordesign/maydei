@@ -44,21 +44,19 @@ function init() {
     }
     if(user.displayName) {
         var userName = firebase.auth().currentUser.displayName;
+        return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      score1 = snapshot.val().score1;
         
+         if (score1 != 0) {
+            gameScreen2();
+        }   
+  });
         gameScreen1();
         
     }
-    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-      score1 = snapshot.val().score1;
-        if(score1 != 0) {
-            gameScreen2();
-        } else {
-            
-        }   
-  }); 
+     
     console.log(user);
 }
-
 
 function writeUserData(userId, name, score1, score2,score3) {
   firebase.database().ref('users/' + userId).set({
@@ -136,8 +134,8 @@ function loginScreen() {
         
     }
     progress = "login";
-    $(".splash").remove();  $("body").css("background","url(img/img1.jpg) no-repeat center center fixed");
-    $(".helper").css("visibility", "visible")
+    $(".splash").remove();  
+    $(".helper").css("visibility", "visible");
     openX = 88;
     openY = 222;
      $('.helper').css("bottom", openX);
@@ -172,7 +170,7 @@ function gameScreen1() {
     } else {
         $(".user").html($userInput);
     }
-        $(".nivel").html("Nivel " + dificuldade);
+        $(".nivel").html("Dificuldade " + dificuldade);
     
     if(!user.displayName) {
     writeUserData(user.uid, user.displayName,0,0,0)
@@ -213,7 +211,7 @@ function gameScreen1() {
               }
 })
 }
-
+343231123
 var g =0;
 var check = 0;
 
@@ -225,7 +223,7 @@ function checkWin() {
         if(seq[i] == seq[i+inicial+dificuldade] ){ //seq tiver certa
             check++;
             console.log(check)
-            if(check ==inicial+dificuldade -1 ) {
+            if(check ==inicial+dificuldade -1  ) {
                 dificuldade+=2;
             }
               if(dificuldade >= 9) {
@@ -302,7 +300,7 @@ function gameScreen2() {
 $(document).on('mouseenter','.helper',function(){   
     switch(progress) {
         case "login":
-            tip = "<p>Neste jogo és a personagem principal e és um aluno que chegou recentemente à universidade.</p>"
+            tip = "<p>Neste jogo és a personagem principal. Completa uma série de desafios para te licenciares a design e multimédia!</p>"
             openX = 0;
             openY = 88;
             
@@ -318,10 +316,10 @@ $(document).on('mouseenter','.helper',function(){
             closeX = -400;
             closeY = 450;
             
-            tip = "<p>Repete a ordem sonora para avançar para o próximo nível. Teclas a,s,d,f ou imagens.</p>";
+            tip = "<p>Utiliza as teclas a,s,d,f ou clica nas imagens para reproduzir sons. Repete a ordem para avançar para o próximo nível.</p>";
             break;
         case "game2":
-            tip = "jogo3";
+            tip = "<p>Resolve o puzzle para finalizar o jogo.</p>";
             break;
     }
     openMenu(openX,openY,110);

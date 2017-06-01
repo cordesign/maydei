@@ -11,7 +11,9 @@
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body ng-app="puzzleApp">
-    
+    <div class="helper">?
+       </div>
+       
 <p id='nome'></p>
 
 	<div ng-include="type"></div>
@@ -21,9 +23,6 @@
 		<fieldset id="sliding-advanced" ng-controller="slidingAdvancedCtrl">
 			
 			<div ng-repeat="puzzle in puzzles">
-				
-				
-				
 				
 				<img width="75px" src="img/fig1.jpg" alt="">
 				
@@ -70,13 +69,33 @@ td1.appendChild(text);
 function init() {
   
     return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
-      score1 = snapshot.val().score1;
-        
-        writeUserData(user.uid, user.displayName, score1, 100,0);
+     score1 = snapshot.val().score1;
+      score2 = snapshot.val().score2;
+        if(score2 != 0) {
+            final();
+        }
+        if(score1 == 0) {
+            window.location.href = "/index.html";
+        }
         
         
   }); 
 }
+    function final() {
+        $("body").html("");
+        $("body").append("<div class='login'><h1>Highscores</h1><h3>1º João</h3><h3>2º Joaquing</h3><h3>3º Jacinto</h3></div>");
+        $(".login").css("height", 150);
+         $("body").css("background","url(img/img2.jpg) no-repeat center center fixed");
+        
+        $(document).on("click", ".login", function() {
+            writeUserData(user.uid, user.displayName, 0, 0,0);
+            
+            window.location.href = "/index.html";
+        })
+    
+        
+        
+    }
     function writeUserData(userId, name, score1, score2,score3) {
   firebase.database().ref('users/' + userId).set({
     username: name,
@@ -86,6 +105,46 @@ function init() {
   });
 }
     
+    openX = 530;
+    openY = 300;
+     $('.helper').css("bottom", openX);
+     $('.helper').css("left", openY);
+    $(document).on('mouseenter','.helper',function(){   
+        openMenu(0,openX,60);
+    });
+    
+    $(document).on('mouseleave','.helper',function(){
+        closeMenu(openY,openX);
+    });
+    
+    $(document).on("click", "img", function() {
+        writeUserData(user.uid, user.displayName, score1, 100,0);
+        final();
+    })
+    function openMenu(left,bottom,height) {
+    $(".helper").html("<p>Consegues resolver o puzzle?</p>"); 
+    window.setTimeout(function() { 
+     $("p").css("opacity" , 1)
+    }, 222);
+     $('.helper').css("height", height);
+    $('.helper').css("transition", "all 225ms ease-in");
+    $('.helper').css("width", "330px");
+    
+    $(".helper").css("left", left);
+    $(".helper").css("bottom", bottom);
+        window.setTimeout(function() { 
+             $(".helper div").css("opacity" , 1)
+    }, 222);
+        
+}
+    function closeMenu(left,right) {
+     $('.helper').html("?");
+    $('.helper').css("transition", "all 225ms ease-in");
+     $('.helper').css("width", "33px");
+     $('.helper').css("height", "33px");
+     $('.helper').css("left", left);
+     $('.helper').css("bottom", right);
+}
     </script>
 
 </body>
