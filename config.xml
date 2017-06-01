@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.vascosilva.jquerymobileapp"
+        versionCode = "1"
+        version     = "1.0.0" >
+
+    <name>MayDEI</name>
+
+    <description>
+        Uma jogo feito para multimédia.
+    </description>
+
+    <author href="fb.com/vasco.silvah" email="vosilva@student.dei.uc.pt">
+        Vasco Silva
+    </author>
+<icon src="icon.png" platform="android" qualifier="ldpi" />
+<plugin name="cordova-plugin-whitelist" />
+<access origin="*" />
+</widget>
