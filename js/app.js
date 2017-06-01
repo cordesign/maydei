@@ -296,7 +296,7 @@ function gameScreen2() {
         
     writeUserData(user.uid, user.displayName,score1,0,0)
     }
-    window.location.href = "maydei/MAYDEI/app/index.html";
+    window.location.href = "MAYDEI/app/index.html";
 }
 $(document).on('mouseenter','.helper',function(){   
     switch(progress) {
