@@ -67,7 +67,9 @@ td1.appendChild(text);
 });
 
 function init() {
-  
+   if(user.displayName == null) {
+            window.location.href = "/maydei";
+        }
     return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
      score1 = snapshot.val().score1;
       score2 = snapshot.val().score2;
@@ -76,8 +78,7 @@ function init() {
         }
         if(score1 == 0) {
             window.location.href = "/maydei";
-        }
-        
+        }    
         
   }); 
 }
@@ -88,8 +89,11 @@ function init() {
          $("body").css("background","url(img/img2.jpg) no-repeat center center fixed");
         
         $(document).on("click", ".login", function() {
-            writeUserData(user.uid, "", 0, 0,0);
-            
+            firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}, function(error) {
+  // An error happened.
+});
             window.location.href = "/maydei";
         })
     
@@ -118,7 +122,7 @@ function init() {
     });
     
     $(document).on("click", "img", function() {
-        writeUserData(user.uid, user.displayName, score1, 100,0);
+        writeUserData(user.uid, user.displayName, 100, 100,0);
         final();
     })
     function openMenu(left,bottom,height) {
