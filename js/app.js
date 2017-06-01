@@ -68,6 +68,14 @@ function writeUserData(userId, name, score1, score2,score3) {
   });
 }
 
+$(document).on('click','.helper',function(){
+     firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}, function(error) {
+  // An error happened.
+});
+    location.reload();
+})
 
 $(document).on('click','#jogar',function(){
        
@@ -110,12 +118,6 @@ function comecarTocar () {
     
     for(i = 0; i < inicial+dificuldade; i++) {
         window.setTimeout(function() {
-            if(i >= inicial + dificuldade) {
-                tocar = true;
-            } else {
-                tocar = false;
-                
-            }
             
             i = Math.floor(Math.random() * 4)  
             playSound(seq2[i]); 
@@ -165,7 +167,7 @@ $(document).on('click','img',function(e){
         
     })
 function gameScreen1() {
-    tocar = true;
+    
     if(user.displayName) {
          $(".user").html(user.displayName);
     } else {
