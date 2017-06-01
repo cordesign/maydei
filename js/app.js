@@ -43,15 +43,17 @@ function init() {
         loginScreen()
     }
     if(user.displayName) {
+        
         var userName = firebase.auth().currentUser.displayName;
+        gameScreen1();
         return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
       score1 = snapshot.val().score1;
         
          if (score1 != 0) {
             gameScreen2();
         }   
-  });
-        gameScreen1();
+        });
+        
         
     }
      
