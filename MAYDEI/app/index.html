@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS puzzle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript" src="js/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="js/puzzle/slidingPuzzle.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script src="../../js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body ng-app="puzzleApp">
+    
+<p id='nome'></p>
+
+	<div ng-include="type"></div>
+	<script type="text/ng-template" id="sliding-puzzle">
+		
+ <div class="login">
+		<fieldset id="sliding-advanced" ng-controller="slidingAdvancedCtrl">
+			
+			<div ng-repeat="puzzle in puzzles">
+				
+				
+				
+				
+				<img width="75px" src="img/fig1.jpg" alt="">
+				
+				<sliding-puzzle api="puzzle.api" size="{{puzzle.rows}}x{{puzzle.cols}}" src="{{puzzle.src}}"></sliding-puzzle>
+				moves: <strong>{{puzzle.api.moves}}</strong>
+                    <br/>
+				
+			</div>
+		</fieldset>
+		</div>
+	</script>
+<script>
+      // Initialize Firebase
+var config = {
+    apiKey: "AIzaSyA5MYTaffvsPsbAfE8cGWr6MoGpV2nYxXc",
+    authDomain: "aulas-4b704.firebaseapp.com",
+    databaseURL: "https://aulas-4b704.firebaseio.com",
+    projectId: "aulas-4b704",
+    storageBucket: "aulas-4b704.appspot.com",
+    messagingSenderId: "96200739951"
+};
+app = firebase.initializeApp(config);
+
+var inited = false;
+
+app.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        window.user = user;
+        var td1 = document.getElementById('nome');
+var text = document.createTextNode(user.displayName);
+td1.appendChild(text);
+        
+        if (!inited) {
+            inited = true;
+            init();
+        }
+    } else { app.auth().signInAnonymously().catch(function(error) {
+            console.log(error);
+        });
+    }
+});
+
+function init() {
+  
+    return firebase.database().ref('/users/' + user.uid).once('value').then(function(snapshot) {
+      score1 = snapshot.val().score1;
+        
+        writeUserData(user.uid, user.displayName, score1, 100,0);
+        
+        
+  }); 
+}
+    function writeUserData(userId, name, score1, score2,score3) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    score1: score1,
+    score2 : score2,
+    score3 : score3
+  });
+}
+    
+    </script>
+
+</body>
+</html>

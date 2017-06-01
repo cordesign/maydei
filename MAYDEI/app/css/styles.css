@@ -1,0 +1,149 @@
+body {
+    background-color: #064765;
+    font-family: "PT Sans";
+    color: white;
+    background: url("../../../img/img3.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+    overflow: hidden;
+}
+#nome {
+    text-transform: uppercase;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+}
+
+img {
+  margin-left: -319px;
+}
+fieldset {
+    border: 0;
+}
+button {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    border-bottom-color: #b3b3b3;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+   background: transparent;
+    font-family: "PT Sans";
+    padding: 10px;
+    color: white;
+    text-transform: uppercase;
+}
+button {
+    width: 225px;
+     outline: none;
+  box-shadow: 0 0 5px rgba(200, 200, 255, 1);
+}
+input::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+input[type=text]:focus {
+     outline: none;
+  box-shadow: 0 0 5px rgba(200, 200, 255, 1);
+}
+
+.helper {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 15px;
+    width: 33px;
+    height: 33px;
+    padding: 15px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 2em;
+    visibility: hidden;
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    transition: all 0.2s ease;  
+    z-index: 1;
+    
+}
+.helper p {
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+.helper div {
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+.splash {
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    background-color: #064765;
+}
+.sliding-puzzle {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.login {
+    width: 450px;
+    z-index: 1; position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    height: 600px;
+  line-height: 20px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 2em;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    z-index: -1;
+}
+.game1 {
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    width: 80%;
+    height: 33%;
+    opacity: 0;
+    z-index:-2;
+}
+.game1 img {
+    width: 24%;
+}
+
+.count {
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    z-index: 5; 
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    
+}
+@media screen and (min-width: 920px) {
+
+    .splash{
+        width: 720px;
+    }
+}
+@media screen and (max-width: 920px) {
+
+    .splash {
+         width: 100%;   
+    }
+    .game1 {
+        width: 410px;
+    height: 600px;
+    }
+    .game1 img {
+        width: 200px;
+    }
+    
+}
